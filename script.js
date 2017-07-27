@@ -20,7 +20,6 @@ function initialize() {
   };
 
   service = new google.maps.places.PlacesService(map);
-  console.log(service)
   service.nearbySearch(request, callback);
 
 }
@@ -37,7 +36,7 @@ function callback(results, status) {
 }
 
 function addMarker(place) {
-  console.log(place)
+  // console.log(place)
   var infowindow = new google.maps.InfoWindow();
   var marker = new google.maps.Marker({
     map: map,
@@ -51,37 +50,24 @@ function addMarker(place) {
   });
 
   google.maps.event.addListener(marker, 'click', function() {
-    console.log(infowindow)
-    infowindow.setContent('<div><strong>' + place.name + '</strong><br>' +
-      'Place ID: ' + place.place_id + '<br>' +
-      place.formatted_address + '</div>');
+    infowindow.setContent('<div>' 
+      +'<strong>' + place.name + '</strong><br>' +
+      'Place Rating: ' + `${place.rating}/5.0` + '<br>' 
+      + '<button onclick="addToListView()" class="btn-cool">Add to Favorite </button>' + 
+       '</div>');
+    console.log('infowindow: ',infowindow, infowindow.content)
     infowindow.open(map, this);
   });
 }
 
-  // function initMap() {
-  //       var map = new google.maps.Map(document.getElementById('map'), {
-  //         center: {lat: -33.866, lng: 151.196},
-  //         zoom: 15
-  //       });
+function addToListView(e) {
+  var btn = document.getElementsByClassName('btn-cool');
+  console.log(btn[0].parentElement)
 
-  //       var infowindow = new google.maps.InfoWindow();
-  //       var service = new google.maps.places.PlacesService(map);
+}
 
-  //       service.getDetails({
-  //         placeId: 'ChIJN1t_tDeuEmsRUsoyG83frY4'
-  //       }, function(place, status) {
-  //         if (status === google.maps.places.PlacesServiceStatus.OK) {
-  //           var marker = new google.maps.Marker({
-  //             map: map,
-  //             position: place.geometry.location
-  //           });
-  //           google.maps.event.addListener(marker, 'click', function() {
-  //             infowindow.setContent('<div><strong>' + place.name + '</strong><br>' +
-  //               'Place ID: ' + place.place_id + '<br>' +
-  //               place.formatted_address + '</div>');
-  //             infowindow.open(map, this);
-  //           });
-  //         }
-  //       });
-  //     }
+// var button = document.getElementsByClassName('favorite-button');
+// console.log('button', button)
+// button.forEach( (ele)=>{
+//   console.log(ele)
+// } )
