@@ -58,7 +58,6 @@ function addMarker(place) {
 
         var currentButtonGreatGrandParent = buttons[0].parentElement.parentElement.parentElement.parentElement.parentElement;
         if(currentButtonGreatGrandParent){
-
           console.log(currentButtonGreatGrandParent ,'IS THIS NULL BEFORE ERROR')
           currentButtonGreatGrandParent.removeChild(currentButtonGreatGrandParent.children[0])
         }
@@ -80,14 +79,9 @@ function addToListView(e) {
   var btn = document.getElementsByClassName('btn-cool');
   var list = document.getElementById('places-list');
   var item = document.createElement('li');
-  item.appendChild()
+  var itemButton = document.createElement('button');
   var node = btn[0].parentElement;
   item.innerHTML = node.children[0].innerHTML + ' | ' + node.children[2].innerHTML; 
+  item.append(itemButton);
   list.appendChild(item);
 }
-
-// var button = document.getElementsByClassName('favorite-button');
-// console.log('button', button)
-// button.forEach( (ele)=>{
-//   console.log(ele)
-// } )
