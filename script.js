@@ -10,7 +10,7 @@ function initialize() {
 
   map = new google.maps.Map(document.getElementById('map'), {
       center: pyrmont,
-      zoom: 12
+      zoom: 14
     });
 
   var request = {
@@ -49,21 +49,41 @@ function addMarker(place) {
     }
   });
 
+
   google.maps.event.addListener(marker, 'click', function() {
-    infowindow.setContent('<div>' 
+    var buttons = document.getElementsByClassName('info-window');
+
+    if(buttons.length > 0){
+      while(buttons.length > 0){
+
+        var currentButtonGreatGrandParent = buttons[0].parentElement.parentElement.parentElement.parentElement.parentElement;
+        if(currentButtonGreatGrandParent){
+
+          console.log(currentButtonGreatGrandParent ,'IS THIS NULL BEFORE ERROR')
+          currentButtonGreatGrandParent.removeChild(currentButtonGreatGrandParent.children[0])
+        }
+      }
+      // for(var i = 0; i< buttons.length; i++){
+      // }
+    }
+    console.log(buttons)
+    infowindow.setContent('<div class="info-window">' 
       +'<strong>' + place.name + '</strong><br>' +
-      'Place Rating: ' + `${place.rating}/5.0` + '<br>' 
+      '<span>Rating: ' + `${place.rating}/5.0</span>` + '<br>' 
       + '<button onclick="addToListView()" class="btn-cool">Add to Favorite </button>' + 
        '</div>');
-    console.log('infowindow: ',infowindow, infowindow.content)
     infowindow.open(map, this);
   });
 }
 
 function addToListView(e) {
   var btn = document.getElementsByClassName('btn-cool');
-  console.log(btn[0].parentElement)
-
+  var list = document.getElementById('places-list');
+  var item = document.createElement('li');
+  item.appendChild()
+  var node = btn[0].parentElement;
+  item.innerHTML = node.children[0].innerHTML + ' | ' + node.children[2].innerHTML; 
+  list.appendChild(item);
 }
 
 // var button = document.getElementsByClassName('favorite-button');
